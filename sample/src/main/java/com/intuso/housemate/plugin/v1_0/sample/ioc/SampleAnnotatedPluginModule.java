@@ -17,10 +17,10 @@ import com.intuso.utilities.properties.api.WriteableMapPropertyRepository;
 @Devices({CustomDevice.class}) // devices
 @Conditions({DaylightCondition.class}) // conditions
 @Tasks({DoYourThingTask.class}) // tasks
-public class SamplePluginModule extends PluginModule {
+public class SampleAnnotatedPluginModule extends AnnotatedPluginModule {
 
     @Inject
-    public SamplePluginModule(Log log, WriteableMapPropertyRepository properties) {
+    public SampleAnnotatedPluginModule(Log log, WriteableMapPropertyRepository properties) {
         super(log);
         // setup default prop values
         properties.set(CustomArg.PROP_KEY, "your value"); // value
