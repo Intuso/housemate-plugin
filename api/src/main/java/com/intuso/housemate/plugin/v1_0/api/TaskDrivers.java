@@ -1,6 +1,6 @@
 package com.intuso.housemate.plugin.v1_0.api;
 
-import com.intuso.housemate.client.v1_0.real.api.RealTask;
+import com.intuso.housemate.client.v1_0.real.api.driver.TaskDriver;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,11 +12,11 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Tasks {
+public @interface TaskDrivers {
 
     /**
      * The list of the task factories the plugin provides
      * @return the list of the task factories the plugin provides
      */
-    Class<? extends RealTask>[] value();
+    Class<? extends TaskDriver>[] value();
 }

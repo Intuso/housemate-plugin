@@ -1,6 +1,6 @@
 package com.intuso.housemate.plugin.v1_0.api;
 
-import com.intuso.housemate.client.v1_0.real.api.RealCondition;
+import com.intuso.housemate.client.v1_0.real.api.driver.ConditionDriver;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -12,11 +12,11 @@ import java.lang.annotation.Target;
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-public @interface Conditions {
+public @interface ConditionDrivers {
 
     /**
      * The list of the condition factories the plugin provides
      * @return the list of the condition factories the plugin provides
      */
-    Class<? extends RealCondition>[] value();
+    Class<? extends ConditionDriver>[] value();
 }

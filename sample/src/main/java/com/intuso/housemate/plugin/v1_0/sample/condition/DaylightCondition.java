@@ -2,22 +2,18 @@ package com.intuso.housemate.plugin.v1_0.sample.condition;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-import com.intuso.housemate.client.v1_0.real.api.RealCondition;
-import com.intuso.housemate.client.v1_0.real.api.factory.condition.RealConditionOwner;
-import com.intuso.housemate.comms.v1_0.api.payload.ConditionData;
+import com.intuso.housemate.client.v1_0.real.api.driver.ConditionDriver;
 import com.intuso.housemate.plugin.v1_0.api.TypeInfo;
-import com.intuso.utilities.listener.ListenersFactory;
-import com.intuso.utilities.log.Log;
 
 @TypeInfo(id = "daylight-condition", name = "Daylight Condition", description = "Condition that is true when the sun is shining")
-public class DaylightCondition extends RealCondition {
+public class DaylightCondition implements ConditionDriver {
 
     @Inject
-    public DaylightCondition(Log log,
-                             ListenersFactory listenersFactory,
-                             @Assisted ConditionData data,
-                             @Assisted RealConditionOwner owner) {
-        super(log, listenersFactory, "daylight-condition", data, owner);
+    public DaylightCondition(@Assisted ConditionDriver.Callback callback) {}
+
+    @Override
+    public boolean hasChildConditions() {
+        return false;
     }
 
     @Override

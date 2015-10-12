@@ -6,11 +6,11 @@ import com.google.inject.Singleton;
 import com.google.inject.TypeLiteral;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.multibindings.Multibinder;
-import com.intuso.housemate.client.v1_0.real.api.*;
-import com.intuso.housemate.client.v1_0.real.api.factory.condition.RealConditionFactory;
-import com.intuso.housemate.client.v1_0.real.api.factory.device.RealDeviceFactory;
-import com.intuso.housemate.client.v1_0.real.api.factory.hardware.RealHardwareFactory;
-import com.intuso.housemate.client.v1_0.real.api.factory.task.RealTaskFactory;
+import com.intuso.housemate.client.v1_0.real.api.RealType;
+import com.intuso.housemate.client.v1_0.real.api.driver.ConditionDriver;
+import com.intuso.housemate.client.v1_0.real.api.driver.DeviceDriver;
+import com.intuso.housemate.client.v1_0.real.api.driver.HardwareDriver;
+import com.intuso.housemate.client.v1_0.real.api.driver.TaskDriver;
 import com.intuso.utilities.log.Log;
 
 import java.lang.reflect.Type;
@@ -19,8 +19,6 @@ import java.lang.reflect.Type;
  * Base class for all plugins that wish to use annotations to describe the provided features
  */
 public abstract class AnnotatedPluginModule extends AbstractModule implements PluginModule {
-
-    public static String MANIFEST_ATTRIBUTE = "Housemate-Plugin";
 
     private final Log log;
 
@@ -38,10 +36,10 @@ public abstract class AnnotatedPluginModule extends AbstractModule implements Pl
         configureComparators(Multibinder.newSetBinder(binder(), new TypeLiteral<Comparator<?>>() {}));
         configureOperators(Multibinder.newSetBinder(binder(), new TypeLiteral<Operator<?, ?>>() {}));
         configureTransformers(Multibinder.newSetBinder(binder(), new TypeLiteral<Transformer<?, ?>>() {}));
-        configureHardwareFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<RealHardwareFactory<?>>() {}));
-        configureDeviceFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<RealDeviceFactory<?>>() {}));
-        configureConditionFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<RealConditionFactory<?>>() {}));
-        configureTaskFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<RealTaskFactory<?>>() {}));
+        configureHardwareFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<HardwareDriver.Factory<?>>() {}));
+        configureDeviceFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<DeviceDriver.Factory<?>>() {}));
+        configureConditionFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<ConditionDriver.Factory<?>>() {}));
+        configureTaskFactories(Multibinder.newSetBinder(binder(), new TypeLiteral<TaskDriver.Factory<?>>() {}));
     }
 
     @Provides
@@ -78,13 +76,13 @@ public abstract class AnnotatedPluginModule extends AbstractModule implements Pl
                 transformerBindings.addBinding().to(transformerClass);
     }
 
-    public void configureHardwareFactories(Multibinder<RealHardwareFactory<?>> hardwareFactoryBindings) {
-        Hardwares hardwares = getClass().getAnnotation(Hardwares.class);
-        if(hardwares != null) {
-            for(Class<? extends RealHardware> hardwareClass : hardwares.value()) {
+    public void configureHardwareFactories(Multibinder<HardwareDriver.Factory<?>> hardwareFactoryBindings) {
+        HardwareDrivers hardwareDrivers = getClass().getAnnotation(HardwareDrivers.class);
+        if(hardwareDrivers != null) {
+            for(Class<? extends HardwareDriver> driverClass : hardwareDrivers.value()) {
                 // add the factory to the multibinding
-                Type type = com.google.inject.util.Types.newParameterizedType(RealHardwareFactory.class, hardwareClass);
-                TypeLiteral<RealHardwareFactory<?>> typeLiteral = (TypeLiteral<RealHardwareFactory<?>>) TypeLiteral.get(type);
+                Type type = com.google.inject.util.Types.newParameterizedTypeWithOwner(HardwareDriver.class, HardwareDriver.Factory.class, driverClass);
+                TypeLiteral<HardwareDriver.Factory<?>> typeLiteral = (TypeLiteral<HardwareDriver.Factory<?>>) TypeLiteral.get(type);
                 hardwareFactoryBindings.addBinding().to(typeLiteral);
                 // provide a factory impl using assisted inject
                 install(new FactoryModuleBuilder().build(typeLiteral));
@@ -92,13 +90,13 @@ public abstract class AnnotatedPluginModule extends AbstractModule implements Pl
         }
     }
 
-    public void configureDeviceFactories(Multibinder<RealDeviceFactory<?>> deviceFactoryBindings) {
-        Devices devices = getClass().getAnnotation(Devices.class);
-        if(devices != null) {
-            for(Class<? extends RealDevice> deviceClass : devices.value()) {
+    public void configureDeviceFactories(Multibinder<DeviceDriver.Factory<?>> deviceFactoryBindings) {
+        DeviceDrivers deviceDrivers = getClass().getAnnotation(DeviceDrivers.class);
+        if(deviceDrivers != null) {
+            for(Class<? extends DeviceDriver> driverClass : deviceDrivers.value()) {
                 // add the factory to the multibinding
-                Type type = com.google.inject.util.Types.newParameterizedType(RealDeviceFactory.class, deviceClass);
-                TypeLiteral<RealDeviceFactory<?>> typeLiteral = (TypeLiteral<RealDeviceFactory<?>>) TypeLiteral.get(type);
+                Type type = com.google.inject.util.Types.newParameterizedTypeWithOwner(DeviceDriver.class, DeviceDriver.Factory.class, driverClass);
+                TypeLiteral<DeviceDriver.Factory<?>> typeLiteral = (TypeLiteral<DeviceDriver.Factory<?>>) TypeLiteral.get(type);
                 deviceFactoryBindings.addBinding().to(typeLiteral);
                 // provide a factory impl using assisted inject
                 install(new FactoryModuleBuilder().build(typeLiteral));
@@ -106,13 +104,13 @@ public abstract class AnnotatedPluginModule extends AbstractModule implements Pl
         }
     }
 
-    public void configureConditionFactories(Multibinder<RealConditionFactory<?>> conditionFactoryBindings) {
-        Conditions conditions = getClass().getAnnotation(Conditions.class);
-        if(conditions != null) {
-            for(Class<? extends RealCondition> conditionClass : conditions.value()) {
+    public void configureConditionFactories(Multibinder<ConditionDriver.Factory<?>> conditionFactoryBindings) {
+        ConditionDrivers conditionDrivers = getClass().getAnnotation(ConditionDrivers.class);
+        if(conditionDrivers != null) {
+            for(Class<? extends ConditionDriver> driverClass : conditionDrivers.value()) {
                 // add the factory to the multibinding
-                Type type = com.google.inject.util.Types.newParameterizedType(RealConditionFactory.class, conditionClass);
-                TypeLiteral<RealConditionFactory<?>> typeLiteral = (TypeLiteral<RealConditionFactory<?>>) TypeLiteral.get(type);
+                Type type = com.google.inject.util.Types.newParameterizedTypeWithOwner(ConditionDriver.class, ConditionDriver.Factory.class, driverClass);
+                TypeLiteral<ConditionDriver.Factory<?>> typeLiteral = (TypeLiteral<ConditionDriver.Factory<?>>) TypeLiteral.get(type);
                 conditionFactoryBindings.addBinding().to(typeLiteral);
                 // provide a factory impl using assisted inject
                 install(new FactoryModuleBuilder().build(typeLiteral));
@@ -120,13 +118,13 @@ public abstract class AnnotatedPluginModule extends AbstractModule implements Pl
         }
     }
 
-    public void configureTaskFactories(Multibinder<RealTaskFactory<?>> taskFactoryBindings) {
-        Tasks tasks = getClass().getAnnotation(Tasks.class);
-        if(tasks != null) {
-            for(Class<? extends RealTask> taskClass : tasks.value()) {
+    public void configureTaskFactories(Multibinder<TaskDriver.Factory<?>> taskFactoryBindings) {
+        TaskDrivers taskDrivers = getClass().getAnnotation(TaskDrivers.class);
+        if(taskDrivers != null) {
+            for(Class<? extends TaskDriver> driverClass : taskDrivers.value()) {
                 // add the factory to the multibinding
-                Type type = com.google.inject.util.Types.newParameterizedType(RealTaskFactory.class, taskClass);
-                TypeLiteral<RealTaskFactory<?>> typeLiteral = (TypeLiteral<RealTaskFactory<?>>) TypeLiteral.get(type);
+                Type type = com.google.inject.util.Types.newParameterizedTypeWithOwner(TaskDriver.class, TaskDriver.Factory.class, driverClass);
+                TypeLiteral<TaskDriver.Factory<?>> typeLiteral = (TypeLiteral<TaskDriver.Factory<?>>) TypeLiteral.get(type);
                 taskFactoryBindings.addBinding().to(typeLiteral);
                 // provide a factory impl using assisted inject
                 install(new FactoryModuleBuilder().build(typeLiteral));

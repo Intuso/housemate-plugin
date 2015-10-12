@@ -14,13 +14,13 @@ import com.intuso.utilities.properties.api.WriteableMapPropertyRepository;
 
 @Types({LocationType.class}) // types
 @Comparators({LocationComparator.class, ComplexLocationComparator.class}) // comparators
-@Devices({CustomDevice.class}) // devices
-@Conditions({DaylightCondition.class}) // conditions
-@Tasks({DoYourThingTask.class}) // tasks
-public class SampleAnnotatedPluginModule extends AnnotatedPluginModule {
+@DeviceDrivers({CustomDevice.class}) // devices
+@ConditionDrivers({DaylightCondition.class}) // conditions
+@TaskDrivers({DoYourThingTask.class}) // tasks
+public class SamplePluginModule extends AnnotatedPluginModule {
 
     @Inject
-    public SampleAnnotatedPluginModule(Log log, WriteableMapPropertyRepository properties) {
+    public SamplePluginModule(Log log, WriteableMapPropertyRepository properties) {
         super(log);
         // setup default prop values
         properties.set(CustomArg.PROP_KEY, "your value"); // value
