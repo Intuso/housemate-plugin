@@ -5,7 +5,6 @@ import com.google.inject.assistedinject.Assisted;
 import com.intuso.housemate.client.v1_0.real.api.annotations.*;
 import com.intuso.housemate.client.v1_0.real.api.driver.DeviceDriver;
 import com.intuso.housemate.plugin.v1_0.api.TypeInfo;
-import com.intuso.housemate.plugin.v1_0.sample.type.Location;
 
 @TypeInfo(id = "custom-device", name = "Custom Device", description = "Device that does some custom thing")
 public class CustomDevice implements DeviceDriver {
@@ -20,7 +19,7 @@ public class CustomDevice implements DeviceDriver {
     public CustomDevice(@Assisted DeviceDriver.Callback callback) {}
 
     @Command(id = "do-me", name = "Do Me", description = "Do me")
-    public void doMe(@Parameter(id = "where", name = "Where", description = "Where to do me", typeId = "location") Location where) {
+    public void doMe(@Parameter(id = "param", name = "Some Param", description = "A parameter for something", typeId = "location") String someValue) {
         // do something meaningful and interesting here
         values.myValue((int)myProperty);
     }
