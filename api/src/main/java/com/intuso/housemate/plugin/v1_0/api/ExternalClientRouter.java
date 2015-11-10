@@ -4,7 +4,7 @@ import com.intuso.housemate.comms.v1_0.api.BaseRouter;
 import com.intuso.housemate.comms.v1_0.api.ClientConnection;
 import com.intuso.housemate.comms.v1_0.api.Message;
 import com.intuso.housemate.comms.v1_0.api.Router;
-import com.intuso.housemate.comms.v1_0.api.access.ServerConnectionStatus;
+import com.intuso.housemate.comms.v1_0.api.access.ConnectionStatus;
 import com.intuso.utilities.listener.ListenersFactory;
 import com.intuso.utilities.log.Log;
 
@@ -31,13 +31,11 @@ public abstract class ExternalClientRouter<ROUTER extends ExternalClientRouter<?
     @Override
     public final void connect() {
         // do nothing
-        connectionEstablished();
     }
 
     @Override
     public final void disconnect() {
         // do nothing
-        connectionLost(false);
     }
 
     @Override
@@ -53,7 +51,7 @@ public abstract class ExternalClientRouter<ROUTER extends ExternalClientRouter<?
     public void start() {
         this.routerRegistration = router.registerReceiver(new Receiver() {
             @Override
-            public void serverConnectionStatusChanged(ClientConnection clientConnection, ServerConnectionStatus serverConnectionStatus) {
+            public void serverConnectionStatusChanged(ClientConnection clientConnection, ConnectionStatus connectionStatus) {
                 // do nothing
             }
 
