@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.google.inject.*;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.intuso.housemate.client.v1_0.real.api.RealType;
+import com.intuso.housemate.client.v1_0.real.api.annotations.TypeInfo;
 import com.intuso.housemate.client.v1_0.real.api.driver.ConditionDriver;
 import com.intuso.housemate.client.v1_0.real.api.driver.DeviceDriver;
 import com.intuso.housemate.client.v1_0.real.api.driver.HardwareDriver;

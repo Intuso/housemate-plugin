@@ -1,5 +1,7 @@
 package com.intuso.housemate.plugin.v1_0.api;
 
+import com.intuso.housemate.client.v1_0.real.api.annotations.TypeInfo;
+
 public class CommonOperators {
 
     private CommonOperators() {}
