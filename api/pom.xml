@@ -16,7 +16,7 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>housemate-client-1-0-real-api</artifactId>
-            <version>${intuso.housemate.comms.version}</version>
+            <version>${intuso.housemate.client.version}</version>
         </dependency>
 
         <dependency>

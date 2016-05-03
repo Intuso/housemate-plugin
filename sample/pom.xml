@@ -18,5 +18,11 @@
 			<artifactId>housemate-plugin-1-0-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.intuso.utilities</groupId>
+			<artifactId>utilities-properties-api</artifactId>
+			<version>${intuso.utilities.version}</version>
+		</dependency>
 	</dependencies>
 </project>
