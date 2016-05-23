@@ -13,10 +13,17 @@
     <description>Housemate api for plugins 1.0</description>
 
 	<dependencies>
+
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>housemate-client-1-0-real-api</artifactId>
-            <version>${intuso.housemate.client.version}</version>
+            <groupId>com.intuso.utilities</groupId>
+            <artifactId>utilities-listener</artifactId>
+            <version>${intuso.utilities.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
         </dependency>
 
         <dependency>

@@ -1,15 +1,15 @@
-package com.intuso.housemate.plugin.v1_0.api;
+package com.intuso.housemate.plugin.v1_0.api.module;
 
 import com.google.common.base.Function;
 import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
 import com.google.inject.*;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
-import com.intuso.housemate.client.v1_0.real.api.annotations.TypeInfo;
-import com.intuso.housemate.client.v1_0.real.api.driver.ConditionDriver;
-import com.intuso.housemate.client.v1_0.real.api.driver.DeviceDriver;
-import com.intuso.housemate.client.v1_0.real.api.driver.HardwareDriver;
-import com.intuso.housemate.client.v1_0.real.api.driver.TaskDriver;
+import com.intuso.housemate.plugin.v1_0.api.annotations.TypeInfo;
+import com.intuso.housemate.plugin.v1_0.api.driver.ConditionDriver;
+import com.intuso.housemate.plugin.v1_0.api.driver.DeviceDriver;
+import com.intuso.housemate.plugin.v1_0.api.driver.HardwareDriver;
+import com.intuso.housemate.plugin.v1_0.api.driver.TaskDriver;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -28,6 +28,17 @@ public abstract class AnnotatedPluginModule extends AbstractModule {
     @Singleton
     public TypeInfo getTypeInfo() {
         return getClass().getAnnotation(TypeInfo.class);
+    }
+
+    @Provides
+    @Singleton
+    public Iterable<PluginResource<Class<?>>> getTypes(Injector injector) {
+        Types types = getClass().getAnnotation(Types.class);
+        if(types == null)
+            return Lists.newArrayList();
+        return FluentIterable.from(Lists.newArrayList(types.value()))
+                .transform(asResource(injector))
+                .toList();
     }
 
     @Provides
@@ -83,13 +94,13 @@ public abstract class AnnotatedPluginModule extends AbstractModule {
         };
     }
 
-    private <O> Function<Class<? extends O>, PluginResource<? extends O>> asResource(final Injector injector) {
-        return new Function<Class<? extends O>, PluginResource<? extends O>>() {
+    private Function<Class<?>, PluginResource<Class<?>>> asResource(final Injector injector) {
+        return new Function<Class<?>, PluginResource<Class<?>>>() {
             @Override
-            public PluginResource<? extends O> apply(Class<? extends O> resourceInstanceClass) {
-                return new PluginResourceImpl<>(
-                        getClassAnnotation(resourceInstanceClass, TypeInfo.class),
-                        injector.getInstance(resourceInstanceClass));
+            public PluginResource<Class<?>> apply(Class<?> resourceClass) {
+                return new PluginResourceImpl<Class<?>>(
+                        getClassAnnotation(resourceClass, TypeInfo.class),
+                        resourceClass);
             }
         };
     }

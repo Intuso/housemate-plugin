@@ -1,6 +1,6 @@
 package com.intuso.housemate.plugin.v1_0.sample.device;
 
-import com.intuso.housemate.client.v1_0.real.api.annotations.*;
+import com.intuso.housemate.plugin.v1_0.api.annotations.*;
 
 /**
  * Created by tomc on 18/11/15.

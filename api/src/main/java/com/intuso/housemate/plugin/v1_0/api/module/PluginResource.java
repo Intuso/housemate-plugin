@@ -1,6 +1,6 @@
-package com.intuso.housemate.plugin.v1_0.api;
+package com.intuso.housemate.plugin.v1_0.api.module;
 
-import com.intuso.housemate.client.v1_0.real.api.annotations.TypeInfo;
+import com.intuso.housemate.plugin.v1_0.api.annotations.TypeInfo;
 
 /**
  * Created by tomc on 06/11/15.

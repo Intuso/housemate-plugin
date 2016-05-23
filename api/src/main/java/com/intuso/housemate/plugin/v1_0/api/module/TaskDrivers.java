@@ -1,6 +1,6 @@
-package com.intuso.housemate.plugin.v1_0.api;
+package com.intuso.housemate.plugin.v1_0.api.module;
 
-import com.intuso.housemate.client.v1_0.real.api.driver.TaskDriver;
+import com.intuso.housemate.plugin.v1_0.api.driver.TaskDriver;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
