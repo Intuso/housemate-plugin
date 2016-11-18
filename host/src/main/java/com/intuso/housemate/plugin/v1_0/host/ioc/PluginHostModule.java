@@ -1,8 +1,8 @@
-package com.intuso.housemate.plugin.v1_0.manager.ioc;
+package com.intuso.housemate.plugin.v1_0.host.ioc;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Scopes;
-import com.intuso.housemate.plugin.v1_0.manager.PluginManager;
+import com.intuso.housemate.plugin.v1_0.host.PluginHost;
 
 /**
  * Created by tomc on 18/03/15.
@@ -10,6 +10,6 @@ import com.intuso.housemate.plugin.v1_0.manager.PluginManager;
 public class PluginHostModule extends AbstractModule {
     @Override
     protected void configure() {
-        bind(PluginManager.class).in(Scopes.SINGLETON);
+        bind(PluginHost.class).in(Scopes.SINGLETON);
     }
 }

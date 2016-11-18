@@ -18,4 +18,25 @@ public interface TaskDriver {
     interface Factory<DRIVER extends TaskDriver> {
         DRIVER create(Logger logger, Callback callback);
     }
+
+    /**
+     * Created by tomc on 30/08/16.
+     */
+    class TaskException extends RuntimeException {
+        private static final long serialVersionUID = -1L;
+
+        public TaskException() {}
+
+        public TaskException(String s) {
+            super(s);
+        }
+
+        public TaskException(String s, Throwable throwable) {
+            super(s, throwable);
+        }
+
+        public TaskException(Throwable throwable) {
+            super(throwable);
+        }
+    }
 }

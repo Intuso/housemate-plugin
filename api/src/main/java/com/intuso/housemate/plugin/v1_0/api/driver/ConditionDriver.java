@@ -22,4 +22,25 @@ public interface ConditionDriver {
     interface Factory<DRIVER extends ConditionDriver> {
         DRIVER create(Logger logger, Callback callback);
     }
+
+    /**
+     * Created by tomc on 30/08/16.
+     */
+    class ConditionException extends RuntimeException {
+        private static final long serialVersionUID = -1L;
+
+        public ConditionException() {}
+
+        public ConditionException(String s) {
+            super(s);
+        }
+
+        public ConditionException(String s, Throwable throwable) {
+            super(s, throwable);
+        }
+
+        public ConditionException(Throwable throwable) {
+            super(throwable);
+        }
+    }
 }

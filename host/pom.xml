@@ -7,10 +7,10 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-	<artifactId>housemate-plugin-1-0-manager</artifactId>
+	<artifactId>housemate-plugin-1-0-host</artifactId>
     <packaging>jar</packaging>
-	<name>Housemate Plugin 1.0 Manager</name>
-    <description>Housemate manager for plugins 1.0</description>
+	<name>Housemate Plugin 1.0 Host</name>
+    <description>Housemate host for plugins 1.0</description>
 
 	<dependencies>
 		<dependency>

@@ -1,4 +1,4 @@
-package com.intuso.housemate.plugin.v1_0.manager;
+package com.intuso.housemate.plugin.v1_0.host;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -22,15 +22,15 @@ import java.util.Map;
  * Time: 09:13
  * To change this template use File | Settings | File Templates.
  */
-public class PluginManager {
+public class PluginHost {
 
-    private final static Logger logger = LoggerFactory.getLogger(PluginManager.class);
+    private final static Logger logger = LoggerFactory.getLogger(PluginHost.class);
 
     private final Map<String, Injector> pluginInjectors = Maps.newHashMap();
     private final Listeners<PluginListener> pluginListeners;
 
     @Inject
-    public PluginManager(ListenersFactory listenersFactory) {
+    public PluginHost(ListenersFactory listenersFactory) {
         this.pluginListeners = listenersFactory.create();
     }
 
