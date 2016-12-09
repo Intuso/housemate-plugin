@@ -27,8 +27,6 @@
     </properties>
 
     <modules>
-        <module>api</module>
-        <module>host</module>
         <module>sample</module>
     </modules>
 
