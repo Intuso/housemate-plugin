@@ -2,8 +2,8 @@ package com.intuso.housemate.plugin.v1_0.sample.condition;
 
 import com.google.inject.Inject;
 import com.google.inject.assistedinject.Assisted;
-import com.intuso.housemate.client.v1_0.real.api.annotations.Id;
-import com.intuso.housemate.client.v1_0.real.api.driver.ConditionDriver;
+import com.intuso.housemate.plugin.v1_0.api.annotations.Id;
+import com.intuso.housemate.plugin.v1_0.api.driver.ConditionDriver;
 import org.slf4j.Logger;
 
 @Id(value = "daylight-condition", name = "Daylight Condition", description = "Condition that is true when the sun is shining")

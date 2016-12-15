@@ -1,11 +1,11 @@
 package com.intuso.housemate.plugin.v1_0.sample.ioc;
 
 import com.google.inject.Inject;
-import com.intuso.housemate.client.v1_0.real.api.annotations.Id;
-import com.intuso.housemate.client.v1_0.real.api.module.AnnotatedPluginModule;
-import com.intuso.housemate.client.v1_0.real.api.module.ConditionDrivers;
-import com.intuso.housemate.client.v1_0.real.api.module.FeatureDrivers;
-import com.intuso.housemate.client.v1_0.real.api.module.TaskDrivers;
+import com.intuso.housemate.plugin.v1_0.api.annotations.Id;
+import com.intuso.housemate.plugin.v1_0.api.module.AnnotatedPluginModule;
+import com.intuso.housemate.plugin.v1_0.api.module.ConditionDrivers;
+import com.intuso.housemate.plugin.v1_0.api.module.FeatureDrivers;
+import com.intuso.housemate.plugin.v1_0.api.module.TaskDrivers;
 import com.intuso.housemate.plugin.v1_0.sample.CustomArg;
 import com.intuso.housemate.plugin.v1_0.sample.condition.DaylightCondition;
 import com.intuso.housemate.plugin.v1_0.sample.feature.CustomFeatureDriver;
