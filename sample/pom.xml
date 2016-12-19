@@ -1,28 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>com.intuso.housemate</groupId>
-        <artifactId>housemate-plugin-1-0</artifactId>
+        <artifactId>housemate-plugins</artifactId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-	<artifactId>housemate-plugin-1-0-sample</artifactId>
-    <packaging>jar</packaging>
-	<name>Housemate Plugin 1.0 Sample</name>
-    <description>Housemate Plugin 1.0 Sample</description>
+    <artifactId>housemate-plugins-sample</artifactId>
+    <packaging>pom</packaging>
+    <name>Housemate Plugins Sample</name>
 
-	<dependencies>
-		<dependency>
-            <groupId>${project.groupId}</groupId>
-			<artifactId>housemate-plugin-1-0-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.intuso.utilities</groupId>
-			<artifactId>utilities-properties-api</artifactId>
-			<version>${intuso.utilities.version}</version>
-		</dependency>
-	</dependencies>
+    <modules>
+        <module>v1_0</module>
+    </modules>
 </project>
