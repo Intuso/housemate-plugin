@@ -13,12 +13,12 @@ public class DoYourThingTask implements TaskDriver {
     public DoYourThingTask(@Assisted Logger logger, @Assisted TaskDriver.Callback callback) {}
 
     @Override
-    public void start() {
+    public void startTask() {
         // startup stuff
     }
 
     @Override
-    public void stop() {
+    public void stopTask() {
         // shutdown stuff
     }
 

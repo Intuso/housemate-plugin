@@ -18,12 +18,12 @@ public class DaylightCondition implements ConditionDriver {
     }
 
     @Override
-    public void start() {
+    public void startCondition() {
         // start checking for sunset/sunrise times, eg via a webservice or outdoor light sensor
     }
 
     @Override
-    public void stop() {
+    public void stopCondition() {
         // stop checking sunset/sunrise times
     }
 }
