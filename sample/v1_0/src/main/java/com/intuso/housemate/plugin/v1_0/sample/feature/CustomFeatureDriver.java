@@ -18,7 +18,7 @@ public class CustomFeatureDriver implements FeatureDriver, CustomFeature {
     private final Listeners<Listener> listeners;
     public Listener values;
 
-    @Property("double")
+    @Property
     @Id(value = "my-property", name = "My Property", description = "Property to control me")
     public double myProperty = 1.0;
 

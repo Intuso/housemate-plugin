@@ -12,13 +12,13 @@ public interface CustomFeature {
     @Command
     @Id(value = "do-me", name = "Do Me", description = "Do me")
     void doMe(@Parameter @Id(value = "time", name = "A Time", description = "A time") Time time,
-              @Parameter("custom-int") @Id(value = "int", name = "An Int", description = "An int") int anInt);
+              @Parameter @Id(value = "int", name = "An Int", description = "An int") int anInt);
 
     @AddListener
     ListenerRegistration addListener(Listener listener);
 
     interface Listener {
-        @Value("integer")
+        @Value
         @Id(value = "myValue", name = "My Value", description = "Value to show the latest value of me")
         void myValue(int value);
     }
