@@ -1,7 +1,6 @@
 package com.intuso.housemate.plugin.v1_0.sample.feature;
 
 import com.google.inject.Inject;
-import com.google.inject.assistedinject.Assisted;
 import com.intuso.housemate.client.v1_0.api.HousemateException;
 import com.intuso.housemate.client.v1_0.api.annotation.Id;
 import com.intuso.housemate.client.v1_0.api.annotation.Property;
@@ -23,7 +22,7 @@ public class CustomFeatureDriver implements FeatureDriver, CustomFeature {
     public double myProperty = 1.0;
 
     @Inject
-    public CustomFeatureDriver(@Assisted Logger logger, @Assisted Callback callback, ListenersFactory listenersFactory) {
+    public CustomFeatureDriver(ListenersFactory listenersFactory) {
         this.listeners = listenersFactory.create();
     }
 
@@ -44,16 +43,16 @@ public class CustomFeatureDriver implements FeatureDriver, CustomFeature {
 
     @Override
     public ListenerRegistration addListener(Listener listener) {
-        return null;
+        return listeners.addListener(listener);
     }
 
     @Override
-    public void startFeature() {
+    public void init(Logger logger, Callback callback) {
 
     }
 
     @Override
-    public void stopFeature() {
+    public void uninit() {
 
     }
 }
