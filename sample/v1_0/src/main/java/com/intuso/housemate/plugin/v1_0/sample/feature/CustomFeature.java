@@ -2,7 +2,7 @@ package com.intuso.housemate.plugin.v1_0.sample.feature;
 
 import com.intuso.housemate.client.v1_0.api.annotation.*;
 import com.intuso.housemate.client.v1_0.api.type.Time;
-import com.intuso.utilities.listener.ListenerRegistration;
+import com.intuso.utilities.listener.MemberRegistration;
 
 /**
  * Created by tomc on 18/11/15.
@@ -15,7 +15,7 @@ public interface CustomFeature {
               @Parameter @Id(value = "int", name = "An Int", description = "An int") int anInt);
 
     @AddListener
-    ListenerRegistration addListener(Listener listener);
+    MemberRegistration addListener(Listener listener);
 
     interface Listener {
         @Value

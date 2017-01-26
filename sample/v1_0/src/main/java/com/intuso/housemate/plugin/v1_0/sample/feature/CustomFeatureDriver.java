@@ -6,15 +6,15 @@ import com.intuso.housemate.client.v1_0.api.annotation.Id;
 import com.intuso.housemate.client.v1_0.api.annotation.Property;
 import com.intuso.housemate.client.v1_0.api.driver.FeatureDriver;
 import com.intuso.housemate.client.v1_0.api.type.Time;
-import com.intuso.utilities.listener.ListenerRegistration;
-import com.intuso.utilities.listener.Listeners;
-import com.intuso.utilities.listener.ListenersFactory;
+import com.intuso.utilities.listener.MemberRegistration;
+import com.intuso.utilities.listener.ManagedCollection;
+import com.intuso.utilities.listener.ManagedCollectionFactory;
 import org.slf4j.Logger;
 
 @Id(value = "custom-feature", name = "Custom Feature", description = "Feature that does some custom thing")
 public class CustomFeatureDriver implements FeatureDriver, CustomFeature {
 
-    private final Listeners<Listener> listeners;
+    private final ManagedCollection<Listener> listeners;
     public Listener values;
 
     @Property
@@ -22,8 +22,8 @@ public class CustomFeatureDriver implements FeatureDriver, CustomFeature {
     public double myProperty = 1.0;
 
     @Inject
-    public CustomFeatureDriver(ListenersFactory listenersFactory) {
-        this.listeners = listenersFactory.create();
+    public CustomFeatureDriver(ManagedCollectionFactory managedCollectionFactory) {
+        this.listeners = managedCollectionFactory.create();
     }
 
     @Override
@@ -42,8 +42,8 @@ public class CustomFeatureDriver implements FeatureDriver, CustomFeature {
     }
 
     @Override
-    public ListenerRegistration addListener(Listener listener) {
-        return listeners.addListener(listener);
+    public MemberRegistration addListener(Listener listener) {
+        return listeners.add(listener);
     }
 
     @Override
