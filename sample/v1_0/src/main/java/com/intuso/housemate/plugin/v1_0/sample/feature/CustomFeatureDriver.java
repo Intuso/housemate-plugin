@@ -6,8 +6,8 @@ import com.intuso.housemate.client.v1_0.api.annotation.Id;
 import com.intuso.housemate.client.v1_0.api.annotation.Property;
 import com.intuso.housemate.client.v1_0.api.driver.FeatureDriver;
 import com.intuso.housemate.client.v1_0.api.type.Time;
-import com.intuso.utilities.listener.ManagedCollection;
-import com.intuso.utilities.listener.ManagedCollectionFactory;
+import com.intuso.utilities.collection.ManagedCollection;
+import com.intuso.utilities.collection.ManagedCollectionFactory;
 import org.slf4j.Logger;
 
 @Id(value = "custom-feature", name = "Custom Feature", description = "Feature that does some custom thing")

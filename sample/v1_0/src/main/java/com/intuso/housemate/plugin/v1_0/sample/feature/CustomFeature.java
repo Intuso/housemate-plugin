@@ -2,7 +2,7 @@ package com.intuso.housemate.plugin.v1_0.sample.feature;
 
 import com.intuso.housemate.client.v1_0.api.annotation.*;
 import com.intuso.housemate.client.v1_0.api.type.Time;
-import com.intuso.utilities.listener.ManagedCollection;
+import com.intuso.utilities.collection.ManagedCollection;
 
 /**
  * Created by tomc on 18/11/15.
