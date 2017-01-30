@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.intuso.housemate</groupId>
-    <artifactId>housemate-plugins</artifactId>
+    <artifactId>housemate-plugin</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>Housemate Plugins</name>
-    <description>Housemate Plugins</description>
+    <name>Housemate Plugin</name>
+    <description>Housemate Plugin</description>
 
     <profiles>
         <profile>
